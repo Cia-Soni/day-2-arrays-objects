@@ -1,26 +1,70 @@
-console.log("JS file connected ✅");
+// ARRAY to store student OBJECTS
+let students = [];
 
-// Student data
-const students = [
-    { name: "Asha", marks: 85 },
-    { name: "Rahul", marks: 72 },
-    { name: "Neha", marks: 90 },
-    { name: "Kiran", marks: 65 }
-];
+// push() – Add student
+function addStudent() {
+    let name = document.getElementById("name").value;
+    let mark = Number(document.getElementById("mark").value);
 
-// Get div
-const studentListDiv = document.getElementById("studentList");
+    if (name === "" || mark === "") {
+        alert("Enter name and mark");
+        return;
+    }
 
-// Display students
-students.forEach(student => {
-    console.log(student.name + " - " + student.marks);
+    // OBJECT
+    let student = {
+        name: name,
+        mark: mark
+    };
 
-    const div = document.createElement("div");
-    div.className = "student-card";
-    div.innerHTML = `
-        <p><strong>Name:</strong> ${student.name}</p>
-        <p><strong>Marks:</strong> ${student.marks}</p>
-    `;
+    students.push(student); // push()
 
-    studentListDiv.appendChild(div);
-});
+    console.log("Student Added:", student);
+    console.log("Students Array:", students);
+
+    displayStudents();
+}
+
+// pop() – Remove last student
+function removeLastStudent() {
+    if (students.length === 0) {
+        alert("No students to remove");
+        return;
+    }
+
+    let removedStudent = students.pop(); // pop()
+
+    console.log("Removed Student:", removedStudent);
+    console.log("Remaining Students:", students);
+
+    displayStudents();
+}
+
+// map() – Display all students
+function displayStudents() {
+    let list = document.getElementById("studentList");
+    list.innerHTML = "";
+
+    students.map(student => {
+        // Accessing object properties
+        let li = document.createElement("li");
+        li.textContent = `${student.name} : ${student.mark}`;
+        list.appendChild(li);
+    });
+}
+
+// filter() – Passed students
+function showPassedStudents() {
+    let passedList = document.getElementById("passedList");
+    passedList.innerHTML = "";
+
+    let passedStudents = students.filter(student => student.mark >= 40); // filter()
+
+    console.log("Passed Students:", passedStudents);
+
+    passedStudents.map(student => {
+        let li = document.createElement("li");
+        li.textContent = `${student.name} : ${student.mark}`;
+        passedList.appendChild(li);
+    });
+}
