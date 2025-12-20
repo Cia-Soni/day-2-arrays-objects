@@ -3,22 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Student Marks List</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Student Marks List</h1>
+<div class="container">
+    <h2>Student Marks List</h2>
 
-    <!-- Project Image -->
-    <img 
-        src="assets/output.png" 
-        alt="Student Marks Project Output" 
-        class="project-image"
-    >
+    <input type="text" id="name" placeholder="Student Name">
+    <input type="number" id="mark" placeholder="Student Mark">
 
-    <!-- Student list will appear here -->
-    <div id="studentList"></div>
+    <button onclick="addStudent()">Add Student</button>
+    <button onclick="removeLastStudent()">Remove Last Student</button>
+    <button onclick="showPassedStudents()">Show Passed Students</button>
 
-    <script src="js/script.js"></script>
+    <h3>All Students</h3>
+    <ul id="studentList"></ul>
+
+    <h3>Passed Students (Mark ≥ 40)</h3>
+    <ul id="passedList"></ul>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
